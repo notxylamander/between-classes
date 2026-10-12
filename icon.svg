@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#162030"/>
+  <!-- The day as a transit line: a track with two stops, like the title. -->
+  <rect x="118" y="238" width="276" height="36" rx="18" fill="#ffffff"/>
+  <circle cx="132" cy="256" r="54" fill="#162030" stroke="#ffffff" stroke-width="22"/>
+  <circle cx="380" cy="256" r="54" fill="#162030" stroke="#6d90ff" stroke-width="22"/>
+</svg>

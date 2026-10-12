@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Between Classes</title>
+    <meta name="description" content="Your week of classes, with how long each walk takes and when to leave." />
+    <meta name="theme-color" content="#162030" />
+    <link rel="icon" href="/between-classes/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/between-classes/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="/between-classes/assets/index-C7yStA9F.js"></script>
+    <link rel="stylesheet" crossorigin href="/between-classes/assets/index-DdpGjvW7.css">
+  <link rel="manifest" href="/between-classes/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/between-classes/registerSW.js"></script></head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <h1>Between<span class="rail" aria-hidden="true"></span>Classes</h1>
+        <p class="sub">Your week of classes, clubs and activities, with how long each walk takes and when to leave.</p>
+        <p class="status" id="campusStatus" role="status">Loading the campus map…</p>
+      </header>
+
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-tab="route" aria-selected="true">Day route</button>
+        <button role="tab" data-tab="plan" aria-selected="false">Plan ahead</button>
+        <button role="tab" data-tab="activities" aria-selected="false">Activities</button>
+      </nav>
+
+      <section id="tab-route">
+        <div class="days" id="dayPicker"></div>
+        <div class="controls">
+          <label class="field grow-field">
+            Start and end the day at (optional)
+            <input id="startPlaceInput" list="buildingList" placeholder="Search a building, e.g. Illini Union" autocomplete="off" />
+          </label>
+          <label class="field">
+            Spare minutes wanted
+            <input id="bufferInput" type="number" min="0" max="30" step="1" />
+          </label>
+        </div>
+        <p class="formmsg" id="startPlaceMsg"></p>
+        <div class="location-row">
+          <button class="btn" type="button" id="locationButton" aria-pressed="false">Use my location</button>
+          <p class="status" id="locationMsg" role="status">See today's walk from where you are right now.</p>
+        </div>
+        <div id="nowCard"></div>
+        <div class="summary" id="summary"></div>
+        <div class="split">
+          <div class="map-column">
+            <div id="dayMap" class="day-map" role="region" aria-label="Map of the day's stops and walking route"></div>
+            <p class="hint">Numbers match the stops in the list. Tap a pin for details.</p>
+          </div>
+          <div class="panel"><ol class="line" id="itinerary"></ol></div>
+        </div>
+      </section>
+
+      <section id="tab-plan" hidden>
+        <p class="hint">Try any day and time to see when you'd need to leave for your next class.</p>
+        <div class="days" id="planDayPicker"></div>
+        <div class="controls">
+          <label class="field">
+            At
+            <input id="planTimeInput" type="time" />
+          </label>
+          <fieldset class="field start-choice">
+            <legend>Starting from</legend>
+            <label><input type="radio" name="planStart" value="location" checked /> My location</label>
+            <label><input type="radio" name="planStart" value="building" /> A building</label>
+          </fieldset>
+          <label class="field grow-field" id="planBuildingField" hidden>
+            Building
+            <input id="planBuildingInput" list="buildingList" placeholder="Search a building, e.g. Activities and Recreation Center" autocomplete="off" />
+          </label>
+        </div>
+        <p class="status plan-msg" id="planMsg" role="status"></p>
+        <div id="planCard"></div>
+        <div class="map-column">
+          <div id="planMap" class="day-map" role="region" aria-label="Map of the chosen day with the walk from your starting point"></div>
+          <p class="hint">The blue dot is where you start. The dotted blue line is your walk to the next class.</p>
+        </div>
+      </section>
+
+      <section id="tab-activities" hidden>
+        <div class="panel import-panel">
+          <h2>Import from a calendar</h2>
+          <p class="hint">
+            Choose an .ics calendar file, like the one you'd import into Google Calendar. You'll check the classes
+            before they're added.
+          </p>
+          <label class="btn file-button">
+            Choose .ics file
+            <input type="file" id="icsInput" accept=".ics,text/calendar" />
+          </label>
+          <p class="formmsg" id="importMsg" role="alert"></p>
+          <div id="importReview"></div>
+        </div>
+        <div class="grid2">
+          <div class="panel">
+            <h2 id="formTitle">Add an activity</h2>
+            <form class="form" id="activityForm" novalidate>
+              <label class="field">Name<input id="nameInput" placeholder="e.g. MATH 221 lecture" /></label>
+              <label class="field">Type<select id="typeInput"></select></label>
+              <label class="field">
+                Building
+                <input id="placeInput" list="buildingList" placeholder="Start typing a building name" autocomplete="off" />
+              </label>
+              <div>
+                <div class="status">Meets on</div>
+                <div class="days" id="formDays"></div>
+              </div>
+              <div class="row">
+                <label class="field">Starts<input id="startInput" type="time" value="09:00" /></label>
+                <label class="field">Ends<input id="endInput" type="time" value="09:50" /></label>
+              </div>
+              <p class="formmsg" id="formMsg" role="alert"></p>
+              <div class="actions">
+                <button class="btn primary" type="submit" id="saveButton">Add activity</button>
+                <button class="btn" type="button" id="cancelButton" hidden>Cancel editing</button>
+              </div>
+            </form>
+          </div>
+          <div class="panel">
+            <h2>Your week</h2>
+            <ul class="list" id="activityList"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+    <datalist id="buildingList"></datalist>
+  </body>
+</html>
