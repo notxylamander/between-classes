@@ -14,9 +14,9 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/between-classes/assets/index-Do2JRmZN.js"></script>
-    <link rel="stylesheet" crossorigin href="/between-classes/assets/index-D5U3DDDq.css">
-  <link rel="manifest" href="/between-classes/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/between-classes/registerSW.js"></script></head>
+    <script type="module" crossorigin src="/between-classes/assets/index-Do1jPKoB.js"></script>
+    <link rel="stylesheet" crossorigin href="/between-classes/assets/index-GSJvlInW.css">
+  <link rel="manifest" href="/between-classes/manifest.webmanifest"></head>
   <body>
     <div class="wrap">
       <header class="top">
@@ -142,6 +142,13 @@
         </div>
       </section>
     </div>
+    <div class="update-banner" id="updateBanner" role="status" hidden>
+      <span>A new version of Between Classes is ready.</span>
+      <div class="actions">
+        <button class="btn small" type="button" data-update="later">Later</button>
+        <button class="btn small primary" type="button" data-update="now">Update now</button>
+      </div>
+    </div>
     <dialog id="settingsDialog" aria-labelledby="settingsTitle">
       <form method="dialog" class="settings">
         <div class="settings-head">
@@ -176,6 +183,7 @@
           <label><input type="radio" name="timePicker" value="boxes" /> Boxes <span class="detail">type the time, or use your phone's picker</span></label>
           <label><input type="radio" name="timePicker" value="wheel" /> Clock wheel <span class="detail">tap the hour, then the minutes</span></label>
         </fieldset>
+        <p class="status app-version" id="appVersion"></p>
       </form>
     </dialog>
     <datalist id="buildingList"></datalist>

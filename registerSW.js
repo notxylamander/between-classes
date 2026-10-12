@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/between-classes/sw.js', { scope: '/between-classes/' })})}
