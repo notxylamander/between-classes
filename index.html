@@ -14,13 +14,24 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/between-classes/assets/index-znEAEhpG.js"></script>
-    <link rel="stylesheet" crossorigin href="/between-classes/assets/index-Zb2pRSoO.css">
+    <script type="module" crossorigin src="/between-classes/assets/index-yJ6cDWlc.js"></script>
+    <link rel="stylesheet" crossorigin href="/between-classes/assets/index-Dvl0btu2.css">
   <link rel="manifest" href="/between-classes/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/between-classes/registerSW.js"></script></head>
   <body>
     <div class="wrap">
       <header class="top">
-        <h1>Between<span class="rail" aria-hidden="true"></span>Classes</h1>
+        <div class="title-row">
+          <h1>Between<span class="rail" aria-hidden="true"></span>Classes</h1>
+          <button class="icon-button" type="button" id="settingsButton" aria-label="Settings" title="Settings">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3.3h-4l-.3 2.6a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"
+                transform="translate(-1 0)"
+              />
+            </svg>
+          </button>
+        </div>
         <p class="sub">Your week of classes, clubs and activities, with how long each walk takes and when to leave.</p>
         <p class="status" id="campusStatus" role="status">Loading the campus map…</p>
       </header>
@@ -131,6 +142,36 @@
         </div>
       </section>
     </div>
+    <dialog id="settingsDialog" aria-labelledby="settingsTitle">
+      <form method="dialog" class="settings">
+        <div class="settings-head">
+          <h2 id="settingsTitle">Settings</h2>
+          <button class="btn small" value="close">Done</button>
+        </div>
+        <p class="hint">Changes apply right away and are saved on this device.</p>
+
+        <fieldset class="choice-group">
+          <legend>Theme</legend>
+          <label><input type="radio" name="theme" value="system" /> Match my device</label>
+          <label><input type="radio" name="theme" value="light" /> Light</label>
+          <label><input type="radio" name="theme" value="dark" /> Dark</label>
+        </fieldset>
+
+        <fieldset class="choice-group">
+          <legend>Walking pace</legend>
+          <label><input type="radio" name="pace" value="slow" /> Slow <span class="detail">2.5 mph</span></label>
+          <label><input type="radio" name="pace" value="normal" /> Normal <span class="detail">3 mph</span></label>
+          <label><input type="radio" name="pace" value="fast" /> Fast <span class="detail">3.5 mph</span></label>
+          <label><input type="radio" name="pace" value="custom" /> My own speed</label>
+          <label class="field custom-speed" id="customSpeedField" hidden>
+            Speed in mph (1 to 6)
+            <input id="customMphInput" type="number" min="1" max="6" step="0.1" inputmode="decimal" />
+          </label>
+          <p class="formmsg" id="paceMsg" role="alert"></p>
+          <p class="status" id="paceExample" role="status"></p>
+        </fieldset>
+      </form>
+    </dialog>
     <datalist id="buildingList"></datalist>
   </body>
 </html>
