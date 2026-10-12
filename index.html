@@ -14,8 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/on-time/assets/index-Ct58WQNA.js"></script>
-    <link rel="stylesheet" crossorigin href="/on-time/assets/index-GSJvlInW.css">
+    <script type="module" crossorigin src="/on-time/assets/index-DOn3JhGi.js"></script>
+    <link rel="stylesheet" crossorigin href="/on-time/assets/index-CLM1tT3e.css">
   <link rel="manifest" href="/on-time/manifest.webmanifest"></head>
   <body>
     <div class="wrap">
@@ -109,6 +109,43 @@
           </label>
           <p class="formmsg" id="importMsg" role="alert"></p>
           <div id="importReview"></div>
+        </div>
+        <div class="panel reminders-panel">
+          <h2>Leave-by reminders</h2>
+          <p class="hint">
+            Get a phone notification when it's time to walk to your next class, through Google Calendar. Reminders use
+            your current classes, walking pace, and starting place, so download them again after changing those.
+          </p>
+          <div class="controls">
+            <label class="field">
+              Remind me this many minutes before I need to leave
+              <input id="reminderLeadInput" type="number" min="0" max="30" step="1" value="5" inputmode="numeric" />
+            </label>
+            <label class="field">
+              Last day of reminders (blank for no end)
+              <input id="reminderUntilInput" type="date" />
+            </label>
+          </div>
+          <button class="btn primary" type="button" id="reminderButton">Download leave-by reminders</button>
+          <p class="status" id="reminderMsg" role="status"></p>
+          <details class="steps">
+            <summary>How to add them to Google Calendar</summary>
+            <p class="hint">Do this on a computer: Google Calendar's phone app can't import files.</p>
+            <ol>
+              <li>Open <a href="https://calendar.google.com" target="_blank" rel="noopener">calendar.google.com</a>.</li>
+              <li>Click the gear (Settings), then <b>Add calendar → Create new calendar</b>. Name it <b>On Time</b> and create it.</li>
+              <li>
+                Under <b>Settings for my calendars</b>, choose <b>On Time</b>, then <b>Event notifications</b>. Set one
+                notification for <b id="reminderLeadEcho">5</b> minutes. Google uses this, not the time in the file.
+              </li>
+              <li>Go to <b>Import &amp; export</b>, choose the downloaded file, set <b>Add to calendar</b> to <b>On Time</b>, and click <b>Import</b>.</li>
+              <li>On your phone, check that the Google Calendar app is allowed to send notifications.</li>
+            </ol>
+            <p class="hint">
+              To change your reminders later, remove the On Time calendar (Settings → On Time → Remove calendar → Delete),
+              then repeat these steps with a new download.
+            </p>
+          </details>
         </div>
         <div class="grid2">
           <div class="panel">
